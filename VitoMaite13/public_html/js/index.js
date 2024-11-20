@@ -1,5 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Inicializar la base de datos al cargar la página
+    // Capturar el evento 'click' en el botón de búsqueda
+    document.getElementById("buscarBtn").addEventListener("click", function () {
+        // Obtener los valores seleccionados en los filtros
+        const ciudad = document.getElementById("city").value.trim(); // Ciudad seleccionada
+        const genero = document.getElementById("gender").value; // Género seleccionado
+        const edadMin = document.getElementById("fromInput").value; // Edad mínima
+        const edadMax = document.getElementById("toInput").value; // Edad máxima
+
+        // Verificar los valores de depuración
+        console.log("Ciudad:", ciudad, "Género:", genero, "Edad Min:", edadMin, "Edad Max:", edadMax);
+
+        // Construir la URL con los filtros seleccionados
+        const url = `buscar.html?ciudad=${encodeURIComponent(ciudad)}&genero=${genero}&edadMin=${edadMin}&edadMax=${edadMax}`;
+
+        // Redirigir a la página de resultados
+        window.location.href = url;
+    });
+
+    // Inicializar la base de datos
     abrirBaseDeDatos();
 });
 
