@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario con Drag and Drop</title>
+    <link rel="stylesheet" href="css/editarPerfil.css">
+    <script src="js/editarPerfil.js" defer></script>
+</head>
+<body>
+    <a href="index.html" class="back-link">Volver al inicio</a>
+
+    <div class="container">
+        <h1>Modificar Datos del Usuario</h1>
+        
+        <form id="userForm">
+            <label for="username">Nombre de Usuario (*):</label>
+            <input type="text" id="username" name="username" placeholder="Ingrese su nombre" required>
+            
+            <label for="edad">Edad (*):</label>
+            <input type="number" id="edad" name="edad" placeholder="Ingrese su edad" min="18" required>
+            
+            <label for="phone">Teléfono (*):</label>
+            <input type="tel" id="phone" name="phone" pattern="^\(\d{3}\) \d{3}-\d{4}$" placeholder="Ingrese su teléfono con el formato: (123) 456-7890" >
+            
+             <label>Buscar (*):</label>
+             <div id="buscarDiv">
+                <label for="buscarHombre">Hombre</label>
+                <input type="radio" id="buscarHombre" name="buscar" value="hombre" required>
+                
+                <label for="buscarMujer">Mujer</label>
+                <input type="radio" id="buscarMujer" name="buscar" value="mujer">
+
+                <label for="buscarAmbos">Ambos</label>
+                <input type="radio" id="buscarAmbos" name="buscar" value="ambos">
+            </div>
+
+            <label>Imagen de Perfil:</label>
+            <section id="dropZone">
+                <p>Arrastre y suelte una imagen aquí</p>
+                <input type="file" id="fileInput" accept="image/*" hidden>
+            </section>
+            <div id="preview"></div>
+
+            <button type="button" class="app-button">Guardar Cambios</button>
+        </form>
+
+        <h2>Galería de Imágenes</h2>
+        <div id="imageGallery">
+            <!-- Las imágenes serán cargadas aquí automáticamente -->
+        </div>
+    </div>
+</body>
+</html>

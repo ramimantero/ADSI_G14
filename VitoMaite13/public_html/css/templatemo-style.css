@@ -700,3 +700,88 @@ input[type="range"] {
   height: 0;
   z-index: 1;
 }
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Helvetica Neue', Arial, Sans-Serif;
+}
+
+.login-wrap {
+  position: relative;
+  background: #ecf0f1;
+  width: 350px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px #333;
+  padding: 15px;
+}
+/* General body styles */
+html {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #2c3e50; /* Fondo oscuro */
+    color: #ecf0f1; /* Texto claro */
+}
+
+/* Contenedor principal del login */
+.login-wrap {
+    background: #ecf0f1; /* Fondo claro */
+    width: 400px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Título del formulario */
+h2 {
+    color: #34495e; /* Tono azul grisáceo */
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Estilo de los campos de entrada */
+input[type="text"], input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #bdc3c7; /* Gris claro */
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Estilo para el botón */
+button {
+    background: #e74c3c; /* Rojo */
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: #c0392b; /* Rojo más oscuro */
+}
+
+/* Estilo para el enlace */
+a {
+    text-decoration: none;
+    color: #3498db; /* Azul vibrante */
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
