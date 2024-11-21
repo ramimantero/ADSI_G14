@@ -40,25 +40,49 @@ function abrirBaseDeDatos() {
     solicitud.onupgradeneeded = function (evento) {
         const db = evento.target.result;
 
-        // Crear el almacén de usuarios
-        const usuariosStore = db.createObjectStore("Usuarios", { keyPath: "id", autoIncrement: true });
-        usuariosStore.createIndex("email", "email", { unique: true });
-        usuariosStore.createIndex("edad", "edad", { unique: false });
-        usuariosStore.createIndex("genero", "genero", { unique: false });
-        usuariosStore.createIndex("ciudad", "ciudad", { unique: false });
+        const usuariosStore = db.createObjectStore("Usuarios", {keyPath: "id", autoIncrement: true});
+        usuariosStore.createIndex("email", "email", {unique: true});
+        usuariosStore.createIndex("edad", "edad", {unique: false});
+        usuariosStore.createIndex("genero", "genero", {unique: false});
+        usuariosStore.createIndex("ciudad", "ciudad", {unique: false});
 
         // Añadir usuarios iniciales
         const usuarios = [
-            { nombre: "Marta", email: "marta@example.com", password: "1234", foto: "avatar01", edad: 25, genero: "M", ciudad: "Vitoria" },
-            { nombre: "Laura", email: "laura@example.com", password: "1234", foto: "avatar02", edad: 30, genero: "M", ciudad: "Bilbao" },
-            { nombre: "Ana", email: "ana@example.com", password: "1234", foto: "avatar03", edad: 18, genero: "M", ciudad: "Donostia" },
-            { nombre: "Pedro", email: "pedro@example.com", password: "1234", foto: "avatar09", edad: 18, genero: "H", ciudad: "Vitoria" },
-            { nombre: "David", email: "david@example.com", password: "1234", foto: "avatar10", edad: 22, genero: "H", ciudad: "Donostia" },
+            {nombre: "Marta", email: "marta@example.com", password: "1234", foto: "avatar01", edad: 25, genero: "M", ciudad: "Vitoria"},
+            {nombre: "Laura", email: "laura@example.com", password: "1234", foto: "avatar02", edad: 30, genero: "M", ciudad: "Bilbao"},
+            {nombre: "Ana", email: "ana@example.com", password: "1234", foto: "avatar03", edad: 18, genero: "M", ciudad: "Donostia"},
+            {nombre: "Pedro", email: "pedro@example.com", password: "1234", foto: "avatar09", edad: 18, genero: "H", ciudad: "Vitoria"},
+            {nombre: "David", email: "david@example.com", password: "1234", foto: "avatar10", edad: 22, genero: "H", ciudad: "Donostia"}
         ];
 
         // Insertar los usuarios en el almacén de objetos
         usuarios.forEach(usuario => usuariosStore.add(usuario));
 
         console.log("Usuarios iniciales creados.");
+            // Crear almacén de aficiones
+    if (!db.objectStoreNames.contains("Aficiones")) {
+        const aficionesStore = db.createObjectStore("Aficiones", { keyPath: "id", autoIncrement: true });
+        aficionesStore.createIndex("nombreAfi", "nombreAfi", { unique: true });
+
+        console.log("Almacén de aficiones creado.");
+
+        // Insertar datos iniciales
+        const aficiones = [
+            { nombreAfi: "Deportes" },
+            { nombreAfi: "Música" },
+            { nombreAfi: "Viajar" },
+            { nombreAfi: "Cine" },
+            { nombreAfi: "Caminar" },
+            { nombreAfi: "Arte" },
+            { nombreAfi: "Videojuegos" },
+            { nombreAfi: "Yoga" },
+            { nombreAfi: "Cocina" },
+            { nombreAfi: "Lectura" }
+        ];
+
+        aficiones.forEach(aficion => aficionesStore.add(aficion));
+        console.log("Aficiones iniciales añadidas.");
+    }
+
     };
 }
