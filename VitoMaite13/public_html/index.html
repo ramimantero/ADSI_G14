@@ -9,8 +9,8 @@
         <link rel="stylesheet" href="css/templatemo-style.css">
     </head>
     <body style="background-color: #f5c6cb;">
-        
-         
+
+
 
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
@@ -50,16 +50,19 @@
         <div class="container tm-mt-60">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <form action="buscar.html" method="GET" class="tm-contact-form">
+                    <div class="tm-contact-form">
+                        <!-- Género -->
                         <div class="form-group">
                             <label for="gender" class="tm-text-primary">Soy:</label>
-                            <select id="gender" name="gender" class="form-control rounded-0">
+                            <select id="gender" class="form-control rounded-0">
                                 <option value="hombre-busca-mujer">Soy hombre busco mujer</option>
                                 <option value="mujer-busca-hombre">Soy mujer busco hombre</option>
-                                <option value="hombre-busca-mujer">Soy hombre busco hombre</option>
-                                <option value="mujer-busca-hombre">Soy mujer busco mujer</option>
+                                <option value="hombre-busca-hombre">Soy hombre busco hombre</option>
+                                <option value="mujer-busca-mujer">Soy mujer busco mujer</option>
                             </select>
                         </div>
+
+                        <!-- Rango de edad -->
                         <div class="range_container">
                             <div class="sliders_control">
                                 <input id="fromSlider" type="range" value="18" min="18" max="100"/>
@@ -68,29 +71,34 @@
                             <div class="form_control">
                                 <div class="form_control_container">
                                     <div class="form_control_container__time">Min</div>
-                                    <input class="form_control_container_time_input" type="number" id="fromInput" value="18" min="0" max="100"/>
+                                    <input class="form_control_container_time_input" type="number" id="fromInput" value="18" min="18" max="100"/>
                                 </div>
                                 <div class="form_control_container">
                                     <div class="form_control_container__time">Max</div>
-                                    <input class="form_control_container_time_input" type="number" id="toInput" value="30" min="0" max="100"/>
+                                    <input class="form_control_container_time_input" type="number" id="toInput" value="30" min="18" max="100"/>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Ciudad -->
                         <div class="form-group">
                             <label for="city" class="tm-text-primary">Ciudad:</label>
-                            <select id="city" name="city" class="form-control rounded-0">
-                                <option value="ciudad1">Vitoria</option>
-                                <option value="ciudad2">Donostia</option>
-                                <option value="ciudad3">Bilbao</option>
+                            <select id="city" class="form-control rounded-0">
+                                <option value="Vitoria">Vitoria</option>
+                                <option value="Donostia">Donostia</option>
+                                <option value="Bilbao">Bilbao</option>
                             </select>
                         </div>
+
+                        <!-- Botón de búsqueda -->
                         <div class="form-group tm-text-right">
-                            <button type="submit" class="btn btn-primary">Buscar</button>
+                            <button id="buscarBtn" class="btn btn-primary">Buscar</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <!-- Footer -->
         <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
@@ -120,9 +128,11 @@
                 </div>
             </div>
         </footer>
-     
+
         <script src="js/plugins.js"></script>
         <script src="js/index.js"></script>
+        <script src="js/buscar.js"></script>
+
     </body>
-    
+
 </html>
