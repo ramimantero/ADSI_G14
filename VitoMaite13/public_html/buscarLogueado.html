@@ -1,15 +1,39 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda Avanzada</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Búsqueda Avanzada de Usuarios</h1>
+
+    <!-- Formulario de selección de aficiones -->
+    <div>
+        <h2>Selecciona tus aficiones:</h2>
+        <input type="checkbox" class="aficiones-checkbox" data-id="1"> Deportes <br>
+        <input type="checkbox" class="aficiones-checkbox" data-id="2"> Música <br>
+        <input type="checkbox" class="aficiones-checkbox" data-id="3"> Viajar <br>
+        <input type="checkbox" class="aficiones-checkbox" data-id="4"> Cine <br>
+        <input type="checkbox" class="aficiones-checkbox" data-id="5"> Caminar <br>
+        <input type="checkbox" class="aficiones-checkbox" data-id="6"> Arte <br>
+        <input type="checkbox" class="aficiones-checkbox" data-id="7"> Videojuegos <br>
+        <input type="checkbox" class="aficiones-checkbox" data-id="8"> Yoga <br>
+        <input type="checkbox" class="aficiones-checkbox" data-id="9"> Cocina <br>
+        <input type="checkbox" class="aficiones-checkbox" data-id="10"> Lectura <br>
+        <!-- Agrega más checkboxes según tus aficiones -->
+    </div>
+
+    <button id="buscarUsuariosBtn">Buscar Usuarios</button>
+
+    <!-- Contenedor de resultados -->
+    <div id="resultados">
+        <!-- Aquí se mostrarán los resultados -->
+    </div>
+
+    <!-- Scripts -->
+    <script src="busquedaAvanzada.js"></script>
+    <script src="buscar.js"></script>
+</body>
 </html>

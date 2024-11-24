@@ -19,6 +19,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Inicializar la base de datos
     abrirBaseDeDatos();
+    
+    
+    // Llamar a la función para obtener aficiones y procesarlas
+    obtenerAficiones()
+        .then(aficiones => {
+            const listaAficiones = document.querySelector(".aficiones"); // Asegúrate de que exista este contenedor en tu HTML
+            if (listaAficiones) {
+                listaAficiones.innerHTML = ""; // Limpia cualquier contenido previo
+                aficiones.forEach(aficion => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        <input type="checkbox" id="aficion${aficion.id}" data-id="${aficion.id}" data-nombre="${aficion.nombreAfi}">
+                        <label for="aficion${aficion.id}">${aficion.nombreAfi}</label>
+                    `;
+                    listaAficiones.appendChild(li);
+                });
+            } else {
+                console.error("No se encontró el contenedor para la lista de aficiones.");
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener las aficiones:", error);
+        });
 });
 
 function abrirBaseDeDatos() {
@@ -160,4 +183,28 @@ function abrirBaseDeDatos() {
 
 
     };
+}
+function obtenerAficiones() {
+    return new Promise((resolve, reject) => {
+        const solicitud = indexedDB.open("vitomaitebd", 1);
+
+        solicitud.onsuccess = function (evento) {
+            const db = evento.target.result;
+            const transaction = db.transaction("Aficiones", "readonly");
+            const store = transaction.objectStore("Aficiones");
+            const request = store.getAll();
+
+            request.onsuccess = function () {
+                resolve(request.result);
+            };
+
+            request.onerror = function () {
+                reject("Error al obtener las aficiones.");
+            };
+        };
+
+        solicitud.onerror = function () {
+            reject("Error al abrir la base de datos.");
+        };
+    });
 }
