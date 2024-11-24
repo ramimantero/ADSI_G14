@@ -1,86 +1,72 @@
-// Login/Register form
-// Author: Ian Pirro 
-//------------------------------------
-// Form will change from login to register and visa-versa based
-// on if the user is already "registered"
-// "Usernames" min-len is 5 chars
-//
-// Could be annoying... but fun anyways
+document.addEventListener("DOMContentLoaded", function () {
+    const dbName = "vitomaitebd";
 
+    // Abrir la base de datos
+    function openDatabase() {
+        return new Promise((resolve, reject) => {
+            const solicitud = indexedDB.open(dbName, 1);
 
-// These users "already exist"
-var users = [
-{ name: 'ianpirro' },
-{ name: 'joeschmoe' },
-{ name: 'superdev' }
-];
+            solicitud.onsuccess = function (evento) {
+                resolve(evento.target.result);
+            };
 
-var loginform = {
-  
-  init: function() {
-    this.bindUserBox();
-  },
-  
-  bindUserBox: function() {
-    var result = {};
-    
-    $(".form").delegate("input[name='un']", 'blur',  function(){
-      var $self = $(this);
-      
-      // this grep would be replaced by $.post tp check db for user
-      result = $.grep(users, function(elem, i){  
-        return (elem.name === $self.val());
-      });
-      
-      // This would be callback
-      if (result.length === 1) {
-        if( $("div.login-wrap").hasClass('register')) {
-          loginform.revertForm();
-          return;
+            solicitud.onerror = function (evento) {
+                reject(evento.target.error);
+            };
+        });
+    }
+
+    // Obtener el usuario con su email y contraseña
+    async function obtenerUsuario(email, password) {
+        const db = await openDatabase();
+
+        return new Promise((resolve, reject) => {
+            const transaccion = db.transaction("Usuarios", "readonly");
+            const usuariosStore = transaccion.objectStore("Usuarios");
+            const index = usuariosStore.index("email");
+
+            const solicitud = index.get(email);
+
+            solicitud.onsuccess = function (evento) {
+                const usuario = evento.target.result;
+
+                if (usuario && usuario.password === password) {
+                    resolve(usuario); // Usuario válido
+                } else {
+                    resolve(null); // Usuario no encontrado o contraseña incorrecta
+                }
+            };
+
+            solicitud.onerror = function () {
+                reject("Error al buscar el usuario.");
+            };
+        });
+    }
+
+    // Manejo del evento de login
+    document.getElementById("loginBtn").addEventListener("click", async function () {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            const usuario = await obtenerUsuario(email, password);
+
+            if (usuario) {
+                console.log("Inicio de sesión correcto");
+
+                // Construir URL con parámetros del usuario
+                const url = `indexLogueado.html?email=${encodeURIComponent(usuario.email)}&nombre=${encodeURIComponent(usuario.nombre)}&foto=${encodeURIComponent(usuario.foto)}`;
+
+                // Redirigir con un pequeño retraso (similar a la función de los filtros de búsqueda)
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 1000); // 1 segundo de espera
+            } else {
+                alert("Correo o contraseña incorrectos.");
+            }
+        } catch (error) {
+            console.error("Error al iniciar sesión", error);
+            alert("Hubo un error al iniciar sesión.");
         }
-        else{
-          return;
-        }
-      }
-      
-      if( !$("div.login-wrap").hasClass('register') ) {
-        if ( $("input[name='un']").val().length > 4 )
-          loginform.switchForm();
-      }
-
     });
-  },
-  switchForm: function() {
-    var $html = $("div.login-wrap").addClass('register');
-    $html.children('h2').html('Register');
-    $html.find(".form input[name='pw']").after("<input type='password' placeholder='Re-type password' name='rpw' />");
-    $html.find('button').html('Sign up');
-    $html.find('a p').html('Have an account? Sign in');
-  },
-  revertForm: function() {
-    var $html = $("div.login-wrap").removeClass('register');
-    $html.children('h2').html('Login');
-    $html.find(".form input[name='rpw']").remove();
-    $html.find('button').html('Sign in');
-    $html.find('a p').html("Don't have an account? Register");
-  },
-  submitForm: function(){
-    // ajax to handle register or login
-  }
-  
-}; // loginform {}
-
-
-// Init login form
-loginform.init();
-
-
-// vertical align box   
-(function(elem){ 
-    elem.css("margin-top", Math.floor( ( $(window).height() / 2 ) - ( elem.height() / 2 ) ) );
-}($(".login-wrap")));
-
-$(window).resize(function(){
-    $(".login-wrap").css("margin-top", Math.floor( ( $(window).height() / 2 ) - ( $(".login-wrap").height() / 2 ) ) );
-  
 });
