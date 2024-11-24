@@ -59,70 +59,6 @@ button:hover {
     background-color: #FF3D55; /* Tono más oscuro al pasar el mouse */
 }
 
-#dropZone {
-    border: 2px dashed #ddd;
-    border-radius: 5px;
-    text-align: center;
-    padding: 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    color: #888;
-}
-
-#dropZone.dragover {
-    border-color: #FF5F6D; /* Cambia color al arrastrar una imagen */
-    background-color: rgba(255, 95, 109, 0.1); /* Fondo cuando se arrastra algo */
-}
-
-#preview img {
-    width: 100%;
-    max-height: 150px;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-
-#imageGallery {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 15px;
-}
-
-#imageGallery img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
-    cursor: grab;
-    border: 1px solid #ddd;
-}
-
-.app-button {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #FF4081;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
-.app-button:hover {
-    background-color: #D81B60;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.app-button:active {
-    transform: translateY(2px);
-    box-shadow: none;
-}
-
 .back-link {
     position: absolute;
     top: 20px;
@@ -211,3 +147,42 @@ input[type=radio] {
 		transform: scale(1);
 	}
 }
+/* Lista de imágenes */
+.drag-images img {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    cursor: grab;
+    transition: transform 0.2s;
+}
+
+/* Imagen dentro del recuadro */
+.drop-zone img {
+    display: flex;
+    justify-content: center; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Centrar la drop zone horizontalmente */
+.container-drop-zone {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;    /* Opcional: centra verticalmente */
+    margin-top: 20px;       /* Ajusta el espacio superior si es necesario */
+}
+
+/* Drop zone */
+.drop-zone {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #f9f9f9;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Opcional: sombra para resaltar */
+}
+

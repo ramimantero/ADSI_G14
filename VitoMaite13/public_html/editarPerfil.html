@@ -37,21 +37,28 @@
                 <label for="generoMujer">Mujer</label>
                 <input type="radio" id="generoMujer" name="genero" value="M">
             </div>
+            <div id="aficionesDiv">
+                <select id="aficiones" multiple>
+                </select>
+            </div>
+            
+            <!-- Drag and Drop Section -->
+            <label>Elige tu foto de perfil:</label>
+            <div id="imagenes" class="drag-images">
+                <img id="img1" src="img/img-01.jpg" alt="Imagen 1">
+                <img id="img2" src="img/img-02.jpg" alt="Imagen 2">
+                <img id="img3" src="img/img-03.jpg" alt="Imagen 3">
+            </div>
 
-            <label>Imagen de Perfil:</label>
-            <section id="dropZone">
-                <p>Arrastre y suelte una imagen aquí</p>
-                <input type="file" id="fileInput" accept="image/*" hidden>
-            </section>
-            <div id="preview"></div>
+            <div class="container-drop-zone">
+                <div id="drop-zone" class="drop-zone">
+                    <p>Suelta aquí</p>
+                </div>
+            </div>
+
 
             <button type="button" class="app-button">Guardar Cambios</button>
         </form>
-
-        <h2>Galería de Imágenes</h2>
-        <div id="imageGallery">
-            <!-- Las imágenes serán cargadas aquí automáticamente -->
-        </div>
     </div>
 </body>
 </html>
