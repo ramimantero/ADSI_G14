@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const params = new URLSearchParams(window.location.search);
     const email = params.get('email');
+    const nombre = params.get('nombre');
+    const foto = params.get("foto");
     
     if (!email) {
         console.error("El email no está presente en la URL.");
@@ -13,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const backLink = document.getElementById('backLink');
         
         // Modificar el href para incluir el email
-        backLink.href = `indexLogueado.html?email=${encodeURIComponent(email)}`;
+        backLink.href = `indexLogueado.html?email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
     }
     // Añadir evento al botón de búsqueda
     const buscarBtn = document.getElementById("buscarUsuariosBtn");

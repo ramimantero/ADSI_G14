@@ -6,33 +6,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const edadMin = parseInt(params.get('edadMin'), 10) || 18; // Edad mínima
     const edadMax = parseInt(params.get('edadMax'), 10) || 100; // Edad máxima
     const email = params.get('email');
+    const nombre = params.get('nombre');
+    const foto = params.get("foto");
     
     if (email) {
-        // Obtener el enlace 'Editar Perfil'
-        const editarPerfilLink = document.getElementById('editarPerfilLink');
-        
-        // Modificar el href para incluir el email
-        editarPerfilLink.href = `editarPerfil.html?email=${encodeURIComponent(email)}`;
+       if(document.getElementById('back-link')){
+            const backLink = document.getElementById('back-link');
 
-        const inicioLink1 = document.getElementById('inicioLink1');
-        
-        // Modificar el href para incluir el email
-        inicioLink1.href = `indexLogueado.html?email=${encodeURIComponent(email)}`;
-        
-        const inicioLink2 = document.getElementById('inicioLink2');
-        
-        // Modificar el href para incluir el email
-        inicioLink2.href = `indexLogueado.html?email=${encodeURIComponent(email)}`;
-
-        const mapaLink = document.getElementById('mapaLink');
-        
-        // Modificar el href para incluir el email
-        mapaLink.href = `maps.html?email=${encodeURIComponent(email)}`;
-
-        const busquedaAvanzadaLink = document.getElementById('busquedaAvanzadaLink');
-        
-        // Modificar el href para incluir el email
-        busquedaAvanzadaLink.href = `busquedaAvanzada.html?email=${encodeURIComponent(email)}`;
+            // Modificar el href para incluir el email
+            backLink.href = `indexLogueado.html?email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
+        }
     }
 
     // Convertir el filtro de "genero" en el valor correspondiente ("H" para hombre, "M" para mujer)

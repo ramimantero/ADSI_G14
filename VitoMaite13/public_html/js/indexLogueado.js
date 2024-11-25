@@ -2,7 +2,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     const email = urlParams.get('email');
+    const nombre = urlParams.get('nombre');
+    const foto = urlParams.get("foto");
+    
     document.getElementById("user").value = email;
+
+    // Seleccionar el contenedor de bienvenida
+    const bienvenidaDiv = document.getElementById("bienvenida");
+
+    if (nombre && foto) {
+        // Crear el contenido dinámico
+        bienvenidaDiv.innerHTML = `
+            <span>Bienvenido, <strong>${nombre}</strong></span>
+            <img src="${foto}" alt="Foto de usuario" class="ml-2 rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+        `;
+    } else {
+        // Manejo de error o valores por defecto
+        bienvenidaDiv.innerHTML = `<span>Bienvenido, Usuario</span>`;
+    }
 
     // Verificar si el email existe
     if (email) {
@@ -10,27 +27,27 @@ document.addEventListener('DOMContentLoaded', function () {
         const editarPerfilLink = document.getElementById('editarPerfilLink');
         
         // Modificar el href para incluir el email
-        editarPerfilLink.href = `editarPerfil.html?email=${encodeURIComponent(email)}`;
+        editarPerfilLink.href = `editarPerfil.html?email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
 
         const inicioLink1 = document.getElementById('inicioLink1');
         
         // Modificar el href para incluir el email
-        inicioLink1.href = `indexLogueado.html?email=${encodeURIComponent(email)}`;
+        inicioLink1.href = `indexLogueado.html?email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
         
         const inicioLink2 = document.getElementById('inicioLink2');
         
         // Modificar el href para incluir el email
-        inicioLink2.href = `indexLogueado.html?email=${encodeURIComponent(email)}`;
+        inicioLink2.href = `indexLogueado.html?email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
 
         const mapaLink = document.getElementById('mapaLink');
         
         // Modificar el href para incluir el email
-        mapaLink.href = `maps.html?email=${encodeURIComponent(email)}`;
+        mapaLink.href = `maps.html?email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
 
         const busquedaAvanzadaLink = document.getElementById('busquedaAvanzadaLink');
         
         // Modificar el href para incluir el email
-        busquedaAvanzadaLink.href = `busquedaAvanzada.html?email=${encodeURIComponent(email)}`;
+        busquedaAvanzadaLink.href = `busquedaAvanzada.html?email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
     }
     
     // Capturar el evento 'click' en el botón de búsqueda
@@ -46,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Ciudad:", ciudad, "Género:", genero, "Edad Min:", edadMin, "Edad Max:", edadMax);
 
         // Construir la URL con los filtros seleccionados
-        const url = `buscar.html?ciudad=${encodeURIComponent(ciudad)}&genero=${genero}&edadMin=${edadMin}&edadMax=${edadMax}&email=${user}`;
+        const url = `buscarLogueado.html?ciudad=${encodeURIComponent(ciudad)}&genero=${genero}&edadMin=${edadMin}&edadMax=${edadMax}&email=${user}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
 
         // Redirigir a la página de resultados
         window.location.href = url;

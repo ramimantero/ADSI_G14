@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Obtener el email desde la URL
     const params = new URLSearchParams(window.location.search);
     const email = params.get('email');
+    const nombre = params.get('nombre');
+    const foto = params.get("foto");
     
     if (!email) {
         console.error("El email no está presente en la URL.");
@@ -14,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const backLink = document.getElementById('back-link');
         
         // Modificar el href para incluir el email
-        backLink.href = `indexLogueado.html?email=${encodeURIComponent(email)}`;
+        backLink.href = `indexLogueado.html?email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
     }
 
     // Llamar a la función para abrir la base de datos y cargar el perfil
