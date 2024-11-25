@@ -141,6 +141,7 @@ function mostrarResultados(resultados) {
     `;
 
     contenedor.innerHTML = tablaHTML;
+<<<<<<< HEAD
 
 <<<<<<< HEAD
     // Depuración: Mostrar el total de resultados encontrados
@@ -148,6 +149,9 @@ function mostrarResultados(resultados) {
     console.log("Resultados finales:", resultados);
 }
 =======
+=======
+    
+>>>>>>> f852326 (Correcciones Finales)
     // Agregar eventos de clic a cada fila
     const filasUsuarios = document.querySelectorAll('.usuario-row');
     filasUsuarios.forEach(fila => {
