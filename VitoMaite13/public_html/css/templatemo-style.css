@@ -1,5 +1,5 @@
-.body{
-    background-color: #CC6699 !important;
+body{
+    background: linear-gradient(45deg, #FF5F6D, #FFC371) !important;
 }
 
 #loader-wrapper {
@@ -699,4 +699,29 @@ input[type="range"] {
 #fromSlider {
   height: 0;
   z-index: 1;
+}
+.back-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 12px 24px;
+    background-color: #D81B60;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.back-link:hover {
+    background-color: #0097A7;
+    transform: translateY(-2px);
+}
+
+.back-link:active {
+    transform: translateY(2px);
+    box-shadow: none;
 }

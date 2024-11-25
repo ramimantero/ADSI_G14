@@ -1,0 +1,76 @@
+body {
+    background: linear-gradient(45deg, #FF5F6D, #FFC371); /* Degradado estilo Tinder */
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+    margin-top: 20px;
+}
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+}
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+.back-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 12px 24px;
+    background-color: #D81B60;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.back-link:hover {
+    background-color: #0097A7;
+    transform: translateY(-2px);
+}
+
+.back-link:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+#getLocation {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #FF4081;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+#getLocation:hover {
+    background-color: #D81B60;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#getLocation:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}

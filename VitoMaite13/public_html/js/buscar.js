@@ -5,6 +5,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const generoBusqueda = params.get('genero') || 'hombre-busca-mujer'; // Género del filtro
     const edadMin = parseInt(params.get('edadMin'), 10) || 18; // Edad mínima
     const edadMax = parseInt(params.get('edadMax'), 10) || 100; // Edad máxima
+    const email = params.get('email');
+    const nombre = params.get('nombre');
+    const foto = params.get("foto");
+    
+    if (email) {
+       if(document.getElementById('back-link')){
+            const backLink = document.getElementById('back-link');
+
+            // Modificar el href para incluir el email
+            backLink.href = `indexLogueado.html?email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(nombre)}&foto=${encodeURIComponent(foto)}`;
+        }
+    }
 
     // Convertir el filtro de "genero" en el valor correspondiente ("H" para hombre, "M" para mujer)
     let generoFiltro;
