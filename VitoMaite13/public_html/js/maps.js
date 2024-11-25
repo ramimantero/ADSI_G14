@@ -1,3 +1,23 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+    
+    if (!email) {
+        console.error("El email no está presente en la URL.");
+        return;
+    }
+
+    // Verificar si el email existe
+    if (email) {
+        // Obtener el enlace 'Editar Perfil'
+        const backLink = document.getElementById('backLink');
+        
+        // Modificar el href para incluir el email
+        backLink.href = `indexLogueado.html?email=${encodeURIComponent(email)}`;
+    }
+});
+
 let map;
     let userMarker;
     let userCircle;

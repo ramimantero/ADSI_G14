@@ -8,6 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+    // Verificar si el email existe
+    if (email) {
+        // Obtener el enlace 'Editar Perfil'
+        const backLink = document.getElementById('back-link');
+        
+        // Modificar el href para incluir el email
+        backLink.href = `indexLogueado.html?email=${encodeURIComponent(email)}`;
+    }
+
     // Llamar a la función para abrir la base de datos y cargar el perfil
     abrirBaseDeDatos(email);
 

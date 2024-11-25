@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("Inicio de sesión correcto");
 
                 // Construir URL con parámetros del usuario
-                const url = `indexLogueado.html?email=${encodeURIComponent(usuario.email)}&nombre=${encodeURIComponent(usuario.nombre)}&foto=${encodeURIComponent(usuario.foto)}`;
+                const url = `indexLogueado.html?email=${encodeURIComponent(usuario.email)}&nombre=${encodeURIComponent(usuario.nombre)}`;
 
                 // Redirigir con un pequeño retraso (similar a la función de los filtros de búsqueda)
                 setTimeout(() => {
