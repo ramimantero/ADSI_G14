@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Llamar a la función de búsqueda con los filtros
-    buscarUsuarios(ciudad, generoFiltro, edadMin, edadMax);
+    buscarUsuarios(ciudad, generoFiltro, edadMin, edadMax,email);
 });
 
 // Función para buscar usuarios según los filtros de búsqueda
-function buscarUsuarios(ciudad, genero, edadMin, edadMax) {
+function buscarUsuarios(ciudad, genero, edadMin, edadMax,email) {
     const solicitud = indexedDB.open("vitomaitebd", 1);
 
     solicitud.onsuccess = function (evento) {
@@ -57,7 +57,7 @@ function buscarUsuarios(ciudad, genero, edadMin, edadMax) {
                 console.log("Cumple edad:", cumpleEdad);
 
                 // Solo agregar usuarios que cumplan TODOS los filtros
-                if (cumpleCiudad && cumpleGenero && cumpleEdad) {
+                if (cumpleCiudad && cumpleGenero && cumpleEdad && usuario.email !== email) {
                     resultados.push(usuario);
                 }
 
@@ -81,29 +81,59 @@ function mostrarResultados(resultados) {
         contenedor.innerHTML = "<p>No se encontraron resultados para los filtros seleccionados.</p>";
         return;
     }
-
-    let tablaHTML = `
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Edad</th>
-                    <th>Ciudad</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    // Añadir filas para cada usuario encontrado
-    resultados.forEach(usuario => {
-        tablaHTML += `
-            <tr>
-                <td>${usuario.nombre}</td>
-                <td>${usuario.edad}</td>
-                <td>${usuario.ciudad}</td>
-            </tr>
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+    let tablaHTML;
+    if(email){
+        tablaHTML = `
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Ciudad</th>
+                        <th>Foto</th>
+                    </tr>
+                </thead>
+                <tbody>
         `;
-    });
+
+        // Añadir filas para cada usuario encontrado
+        resultados.forEach(usuario => {
+            tablaHTML += `
+                <tr>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.edad}</td>
+                    <td>${usuario.ciudad}</td>
+                    <td><img src="${usuario.foto}" alt="Foto de usuario" class="ml-2 rounded-circle" style="width: 40px; height: 40px; object-fit: cover;"></td>
+                </tr>
+            `;
+        });
+    }
+    else{
+        tablaHTML = `
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Ciudad</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        // Añadir filas para cada usuario encontrado
+        resultados.forEach(usuario => {
+            tablaHTML += `
+                <tr>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.edad}</td>
+                    <td>${usuario.ciudad}</td>
+                </tr>
+            `;
+        });
+    }
 
     // Cerrar la tabla
     tablaHTML += `

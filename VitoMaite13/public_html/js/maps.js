@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-let map;
+    let map;
     let userMarker;
     let userCircle;
     let currentRadius = 2000; // Radio inicial en metros
@@ -79,6 +79,9 @@ let map;
 
     // Mostrar marcadores dentro del radio
     function showMarkersInRadius(userLocation) {
+        
+        const params = new URLSearchParams(window.location.search);
+        const email = params.get('email');
       // Limpiar los marcadores previos
       allUserMarkers.forEach(marker => marker.setMap(null));
       allUserMarkers = [];
@@ -103,12 +106,12 @@ let map;
               user.lng
             );
 
-            if (distance <= currentRadius) {
+            if (distance <= currentRadius && user.email !== email) {
               // Crear un marcador con el nombre y la edad del usuario
               const marker = new google.maps.Marker({
                 position: { lat: user.lat, lng: user.lng },
                 map: map,
-                title: `${user.nombre} (${user.edad} años)`, // Mostrar nombre y edad
+                title: `${user.nombre} (${user.edad} años)` // Mostrar nombre y edad
               });
               allUserMarkers.push(marker); // Almacenar el marcador para eliminarlo después si es necesario
             }
