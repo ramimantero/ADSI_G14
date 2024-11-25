@@ -63,6 +63,7 @@ function buscarUsuarios(ciudad, genero, edadMin, edadMax,email) {
 
                 cursor.continue();
             } else {
+                resultados.sort((a,b) => a.edad - b.edad );
                 mostrarResultados(resultados);
             }
         };
