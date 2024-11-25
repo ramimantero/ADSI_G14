@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Función para buscar usuarios según los filtros de búsqueda
 function buscarUsuarios(ciudad, genero, edadMin, edadMax,email) {
-    const solicitud = indexedDB.open("vitomaitebd", 1);
+    const solicitud = indexedDB.open("vitomaite14", 1);
 
     solicitud.onsuccess = function (evento) {
         const db = evento.target.result;

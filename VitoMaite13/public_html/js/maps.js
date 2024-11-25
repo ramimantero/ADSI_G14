@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
       allUserMarkers = [];
 
       // Obtener los usuarios desde la base de datos
-      const request = indexedDB.open("vitomaitebd", 1);
+      const request = indexedDB.open("vitomaite14", 1);
 
       request.onsuccess = function (event) {
         const db = event.target.result;

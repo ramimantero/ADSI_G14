@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function mostrarLikes(emailUsuarioLogueado) {
-    const solicitud = indexedDB.open("vitomaitebd", 1);
+    const solicitud = indexedDB.open("vitomaite14", 1);
 
     solicitud.onsuccess = function (evento) {
         const db = evento.target.result;

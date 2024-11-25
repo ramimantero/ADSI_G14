@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function abrirBaseDeDatos() {
     // Abrir o crear la base de datos 'vitomaitebd'
-    const solicitud = indexedDB.open("vitomaitebd", 1);
+    const solicitud = indexedDB.open("vitomaite14", 1);
 
     // Manejo de errores
     solicitud.onerror = function (evento) {
@@ -188,7 +188,7 @@ function abrirBaseDeDatos() {
 }
 function obtenerAficiones() {
     return new Promise((resolve, reject) => {
-        const solicitud = indexedDB.open("vitomaitebd", 1);
+        const solicitud = indexedDB.open("vitomaite14", 1);
 
         solicitud.onsuccess = function (evento) {
             const db = evento.target.result;

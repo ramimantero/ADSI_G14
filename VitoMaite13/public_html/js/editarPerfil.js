@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Función para abrir la base de datos y cargar los datos del usuario
 function abrirBaseDeDatos(email) {
-    const solicitud = indexedDB.open("vitomaitebd", 1);
+    const solicitud = indexedDB.open("vitomaite14", 1);
 
     solicitud.onerror = function(event) {
         console.error("Error al abrir la base de datos:", event.target.error);
@@ -170,7 +170,7 @@ function guardarCambios(email) {
     }
 
     // Abrir la base de datos en modo 'readwrite' para actualizar los datos
-    const solicitud = indexedDB.open("vitomaitebd", 1);
+    const solicitud = indexedDB.open("vitomaite14", 1);
 
     solicitud.onerror = function(event) {
         console.error("Error al abrir la base de datos:", event.target.error);

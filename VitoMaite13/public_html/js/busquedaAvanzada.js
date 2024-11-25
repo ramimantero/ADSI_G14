@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Función para obtener la base de datos
 function obtenerBaseDeDatos() {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open("vitomaitebd", 1);
+        const request = indexedDB.open("vitomaite14", 1);
 
         request.onsuccess = function (event) {
             const db = event.target.result;

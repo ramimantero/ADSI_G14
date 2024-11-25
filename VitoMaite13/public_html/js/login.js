@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const dbName = "vitomaitebd";
+    const dbName = "vitomaite14";
 
     // Abrir la base de datos
     function openDatabase() {
