@@ -1,0 +1,18 @@
+/* Estilo para el corazón flotante sobre la imagen */
+.table img {
+    position: relative;
+}
+
+.table td span {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 24px;
+    color: red; /* Color del corazón */
+    transition: transform 0.3s ease;
+}
+
+/* Animación de "me gusta" al pasar el mouse */
+.table td:hover span {
+    transform: scale(1.2); /* Aumenta el tamaño del corazón */
+}

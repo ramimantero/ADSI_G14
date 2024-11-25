@@ -32,11 +32,12 @@ function mostrarLikes(emailUsuarioLogueado) {
     };
 }
 
+let likesMutuos = {}; // Definido globalmente para que esté disponible en toda la función
+
 function obtenerLikes(db) {
     const params = new URLSearchParams(window.location.search);
     const emailActual = params.get("email"); // Email del usuario logueado
     const emailsQueLikearon = [];
-    const likesMutuos = {}; // Objeto para saber si el like es mutuo (clave: email, valor: true o false)
 
     const transaccion = db.transaction("Likes", "readonly");
     const likesStore = transaccion.objectStore("Likes");
@@ -68,13 +69,12 @@ function obtenerLikes(db) {
             cursor.continue();
         } else {
             console.log("Emails que dieron like:", emailsQueLikearon);
-            obtenerUsuarios(db, emailsQueLikearon, likesMutuos); // Pasar los emails y la información de los likes mutuos
+            obtenerUsuarios(db, emailsQueLikearon); // Pasar los emails sin necesidad de likesMutuos aquí
         }
     };
 }
 
-
-function obtenerUsuarios(db, emailsQueLikearon, likesMutuos) {
+function obtenerUsuarios(db, emailsQueLikearon) {
     const resultados = [];
     const transaccion = db.transaction("Usuarios", "readonly");
     const usuariosStore = transaccion.objectStore("Usuarios");
@@ -87,7 +87,7 @@ function obtenerUsuarios(db, emailsQueLikearon, likesMutuos) {
 
             // Verifica si el email del usuario está en la lista de emails que dieron like
             if (emailsQueLikearon.includes(usuario.email)) {
-                const esMutuo = likesMutuos[usuario.email] ? "Sí" : "No"; // Verifica si el like es mutuo
+                const esMutuo = likesMutuos[usuario.email] ? true : false; // Verifica si el like es mutuo
                 usuario.esMutuo = esMutuo; // Añade esta propiedad al usuario
                 resultados.push(usuario);
             }
@@ -95,12 +95,12 @@ function obtenerUsuarios(db, emailsQueLikearon, likesMutuos) {
             cursor.continue();
         } else {
             console.log("Usuarios que dieron like:", resultados);
-            generarTablaLikes(resultados); // Generar la tabla con los usuarios encontrados
+            generarTablaLikes(resultados, likesMutuos); // Generar la tabla con los usuarios encontrados
         }
     };
 }
 
-function generarTablaLikes(usuarios) {
+function generarTablaLikes(usuarios, likesMutuos) {
     const contenedor = document.getElementById("resultados");
 
     if (usuarios.length === 0) {
@@ -115,19 +115,25 @@ function generarTablaLikes(usuarios) {
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Foto</th>
-                    <th>Mutuo</th> <!-- Nueva columna -->
                 </tr>
             </thead>
             <tbody>
     `;
 
     usuarios.forEach(usuario => {
+        // Verificamos si el like es mutuo
+        const esMutuo = likesMutuos[usuario.email] ? true : false; 
+
         tablaHTML += `
             <tr>
                 <td>${usuario.nombre}</td>
                 <td>${usuario.email}</td>
-                <td><img src="${usuario.foto}" alt="Foto" style="width: 40px; height: 40px; border-radius: 50%;"></td>
-                <td>${usuario.esMutuo}</td> <!-- Mostrar "Sí" o "No" -->
+                <td style="position: relative;">
+                    <img src="${usuario.foto}" alt="Foto" style="width: 40px; height: 40px; border-radius: 50%;">
+
+                    <!-- Corazón flotante -->
+                    ${esMutuo ? `<span style="position: absolute; top: 5px; right: 5px; font-size: 24px; color: red;">❤️</span>` : ''}
+                </td>
             </tr>
         `;
     });
