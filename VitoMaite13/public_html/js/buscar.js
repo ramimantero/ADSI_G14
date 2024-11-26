@@ -141,17 +141,6 @@ function mostrarResultados(resultados) {
     `;
 
     contenedor.innerHTML = tablaHTML;
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-    // Depuración: Mostrar el total de resultados encontrados
-    console.log("Total de usuarios encontrados:", resultados.length);
-    console.log("Resultados finales:", resultados);
-}
-=======
-=======
-    
->>>>>>> f852326 (Correcciones Finales)
     // Agregar eventos de clic a cada fila
     const filasUsuarios = document.querySelectorAll('.usuario-row');
     filasUsuarios.forEach(fila => {
@@ -318,4 +307,3 @@ function initMap(userLat, userLng, selectedUserLat, selectedUserLng,usuarioNombr
         }
     });
 }
->>>>>>> 1836a87 (Cambios de estilo finales.)

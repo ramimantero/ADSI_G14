@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-#map-container {
-    display: none; /* Inicialmente oculto */
-    margin-top: 20px;
-}
-#map {
-    width: 100%;
-    height: 500px;
-}
-=======
 /* General Styles */
 body {
     background: linear-gradient(45deg, #FF5F6D, #FFC371);
@@ -133,4 +123,3 @@ h2 {
         font-size: 1.5rem;
     }
 }
->>>>>>> 1836a87 (Cambios de estilo finales.)
