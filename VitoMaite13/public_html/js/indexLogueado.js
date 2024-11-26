@@ -267,3 +267,53 @@ function obtenerAficiones() {
         };
     });
 }
+const fromSlider = document.getElementById('fromSlider');
+    const toSlider = document.getElementById('toSlider');
+    const fromInput = document.getElementById('fromInput');
+    const toInput = document.getElementById('toInput');
+
+    // Función para actualizar los sliders según los inputs numéricos
+    function updateSliders() {
+        fromSlider.value = fromInput.value;
+        toSlider.value = toInput.value;
+    }
+
+    // Función para actualizar los inputs numéricos según los sliders
+    function updateInputs() {
+        fromInput.value = fromSlider.value;
+        toInput.value = toSlider.value;
+    }
+
+    // Sincronizar valores mínimos y máximos
+    function validateRange() {
+        if (parseInt(fromSlider.value) >= parseInt(toSlider.value)) {
+            fromSlider.value = toSlider.value - 1;
+        }
+        fromInput.value = fromSlider.value;
+
+        if (parseInt(toSlider.value) <= parseInt(fromSlider.value)) {
+            toSlider.value = parseInt(fromSlider.value) + 1;
+        }
+        toInput.value = toSlider.value;
+    }
+
+    // Event listeners
+    fromSlider.addEventListener('input', () => {
+        updateInputs();
+        validateRange();
+    });
+
+    toSlider.addEventListener('input', () => {
+        updateInputs();
+        validateRange();
+    });
+
+    fromInput.addEventListener('input', () => {
+        updateSliders();
+        validateRange();
+    });
+
+    toInput.addEventListener('input', () => {
+        updateSliders();
+        validateRange();
+    });
